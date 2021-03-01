@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insta Diff Extension</title>
+    <script src="popup.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Ubuntu', sans-serif;
+        }
+        #main {
+            min-width: 400px;
+            padding: 0px 15px 15px 15px;
+        }
+        .fbtn{cursor:pointer;border-radius:3px;-webkit-box-sizing:border-box;box-sizing:border-box;padding:0 15px;background-color:transparent;font-family:inherit;font-size:14px;font-weight:500;letter-spacing:.5;line-height:35px;text-align:center;text-decoration:none;-webkit-transition:background-color .15s,color .15s ease-in-out;transition:background-color .15s,color .15s ease-in-out;white-space:nowrap}
+        .fbtn-success{color:#2ecc71;border:2px solid #2ecc71;outline:0}
+        .fbtn-success:hover{color:#fff;background-color:#2ecc71;text-decoration:none}
+        .fbtn-success:active,.fbtn-success:focus,.fbtn-success:visited{text-decoration:none}
+        h1 {
+            font-size: 20px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            display: block;
+            width: 100%;
+        }
+        .text-danger {
+            color: red;
+        }
+        #loading, #successAddItem {
+            text-align: center;
+        }
+        .smallLink {
+            font-size: 12px;
+        }
+        .blockLink {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <section id="main">
+        <h1><img src="logo_64px.png"> Insta Diff</h1>
+        <div id="functions" class="">
+            <button id="getFollowers" class="btn btn-success" onclick="getFollowers()">Get followers</button>
+            <button id="getFollowings" class="btn btn-warning" onclick="getFollowings()">Get followings</button>
+            <button id="getDiff" class="btn btn-danger" onclick="getDiff()">Get diff</button>
+        </div>
+<!--        <div id="loading" style="display: none;">-->
+<!--            <p><img src="Pacman.gif"></p>-->
+<!--            <p id="loadingMsg"></p>-->
+<!--        </div>-->
+<!--        <div class="has-error text-danger" id="errorMsg" style="display: none;"></div>-->
+<!--        <div id="successAddItem" style="display: none;">-->
+<!--            <p><img src="checked.png" width="200"></p>-->
+<!--            <p>O item foi adicionado com sucesso!</p>-->
+<!--            <br />-->
+<!--            <a href="#" id="back">Voltar</a>-->
+<!--        </div>-->
+    </section>
+
+</body>
+</html>

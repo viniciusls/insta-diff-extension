@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Insta Diff Exporter",
+  "description": "Compare Instagram followers vs. following or simply get a list of followers or followings",
+  "version": "1.0",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "permissions": [
+    "activeTab",
+    "cookies",
+    "tabs",
+    "http://*instagram.com/*",
+    "https://*instagram.com/*"
+  ]
+}
