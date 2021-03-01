@@ -16,7 +16,7 @@
     "activeTab",
     "cookies",
     "tabs",
-    "http://*instagram.com/*",
-    "https://*instagram.com/*"
+    "https://www.instagram.com/*",
+    "https://www.insta-diff-exporter.app/*"
   ]
 }

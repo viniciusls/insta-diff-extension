@@ -105,3 +105,6 @@ dist
 
 # IDEA
 .idea/
+
+# Compiled module
+*.zip

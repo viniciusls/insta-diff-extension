@@ -11,33 +11,106 @@
         body {
             font-family: 'Ubuntu', sans-serif;
         }
+
         #main {
             min-width: 400px;
             padding: 0px 15px 15px 15px;
         }
-        .fbtn{cursor:pointer;border-radius:3px;-webkit-box-sizing:border-box;box-sizing:border-box;padding:0 15px;background-color:transparent;font-family:inherit;font-size:14px;font-weight:500;letter-spacing:.5;line-height:35px;text-align:center;text-decoration:none;-webkit-transition:background-color .15s,color .15s ease-in-out;transition:background-color .15s,color .15s ease-in-out;white-space:nowrap}
-        .fbtn-success{color:#2ecc71;border:2px solid #2ecc71;outline:0}
-        .fbtn-success:hover{color:#fff;background-color:#2ecc71;text-decoration:none}
-        .fbtn-success:active,.fbtn-success:focus,.fbtn-success:visited{text-decoration:none}
+
+        button {
+            margin: 5px auto;
+        }
+
+        .fbtn {
+            cursor: pointer;
+            border-radius: 3px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 0 15px;
+            background-color: transparent;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: .5;
+            line-height: 35px;
+            text-align: center;
+            text-decoration: none;
+            -webkit-transition: background-color .15s, color .15s ease-in-out;
+            transition: background-color .15s, color .15s ease-in-out;
+            white-space: nowrap
+        }
+
+        .fbtn-success {
+            color: #2ecc71;
+            border: 2px solid #2ecc71;
+            outline: 0
+        }
+
+        .fbtn-success:hover {
+            color: #fff;
+            background-color: #2ecc71;
+            text-decoration: none
+        }
+
+        .fbtn-success:active, .fbtn-success:focus, .fbtn-success:visited {
+            text-decoration: none
+        }
+
+        .fbtn-warning {
+            color: #F9BF3B;
+            border: 2px solid #F9BF3B;
+        }
+
+        .fbtn-warning:hover {
+            color: white;
+            background-color: #F9BF3B;
+            text-decoration: none;
+        }
+
+        fbtn-warning:active, .fbtn-success:focus, .fbtn-success:visited {
+            text-decoration: none
+        }
+
+        .fbtn-danger {
+            color: #F62459;
+            border: 2px solid #F62459;
+        }
+
+        .fbtn-danger:hover {
+            color: white;
+            background-color: #F62459;
+            text-decoration: none;
+        }
+
+        fbtn-danger:active, .fbtn-success:focus, .fbtn-success:visited {
+            text-decoration: none
+        }
+
         h1 {
             font-size: 20px;
         }
+
         textarea {
             resize: vertical;
         }
+
         button {
             display: block;
             width: 100%;
         }
+
         .text-danger {
             color: red;
         }
+
         #loading, #successAddItem {
             text-align: center;
         }
+
         .smallLink {
             font-size: 12px;
         }
+
         .blockLink {
             width: 100%;
             display: block;
@@ -49,21 +122,21 @@
     <section id="main">
         <h1><img src="logo_64px.png"> Insta Diff</h1>
         <div id="functions" class="">
-            <button id="getFollowers" class="btn btn-success" onclick="getFollowers()">Get followers</button>
-            <button id="getFollowings" class="btn btn-warning" onclick="getFollowings()">Get followings</button>
-            <button id="getDiff" class="btn btn-danger" onclick="getDiff()">Get diff</button>
+            <button id="getFollowers" class="fbtn fbtn-success">Get followers</button>
+            <button id="getFollowings" class="fbtn fbtn-warning">Get followings</button>
+            <button id="getDiff" class="fbtn fbtn-danger">Get diff</button>
         </div>
-<!--        <div id="loading" style="display: none;">-->
-<!--            <p><img src="Pacman.gif"></p>-->
-<!--            <p id="loadingMsg"></p>-->
-<!--        </div>-->
-<!--        <div class="has-error text-danger" id="errorMsg" style="display: none;"></div>-->
-<!--        <div id="successAddItem" style="display: none;">-->
-<!--            <p><img src="checked.png" width="200"></p>-->
-<!--            <p>O item foi adicionado com sucesso!</p>-->
-<!--            <br />-->
-<!--            <a href="#" id="back">Voltar</a>-->
-<!--        </div>-->
+        <!--        <div id="loading" style="display: none;">-->
+        <!--            <p><img src="Pacman.gif"></p>-->
+        <!--            <p id="loadingMsg"></p>-->
+        <!--        </div>-->
+        <!--        <div class="has-error text-danger" id="errorMsg" style="display: none;"></div>-->
+        <!--        <div id="successAddItem" style="display: none;">-->
+        <!--            <p><img src="checked.png" width="200"></p>-->
+        <!--            <p>O item foi adicionado com sucesso!</p>-->
+        <!--            <br />-->
+        <!--            <a href="#" id="back">Voltar</a>-->
+        <!--        </div>-->
     </section>
 
 </body>
