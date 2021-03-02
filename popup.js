@@ -110,7 +110,7 @@ const ratelimit = () => new Promise((resolve, reject) => {
 // get follower/following list.
 // the first argument is type of list to fetch, either "follower" or "following".
 // the second argument is whether to NOT log the results, which is for the latter findDiff function, default "false". normal users shouldn't set this to "true"
-const getList = async (follower, nolog, callback) => {
+const getList = async (type, nolog, callback) => {
   await getCookies('https://www.instagram.com', 'ds_user_id', async (userId) => {
     if (!userId) {
       alert(`You're not logged in on Instagram. Please open Instagram website and log in!`);
@@ -118,15 +118,18 @@ const getList = async (follower, nolog, callback) => {
       return window.open(`https://www.instagram.com`);
     }
 
-    let type = (follower === "follower") ? true : ((follower === "following") ? false : "0"); // convert first one to true/false for convenience
-    if (type === "0") throw "first argument must be \"follower\" or \"following\"."; // catch typos
-    let userFollowers = [], // set up list of followers
-      batchCount = 12, // fetch 12 in 1 request, same as the web interface
-      hash = type ? "c76146de99bb02f6415203be841dd25a" : "d04b0a864b4b54837c0d870b0e77e076", // hash, apparently these two are constant values, but instagram might change them
-      mutual = type ? "true" : "false", // followers or following?
-      variable = type ? "edge_followed_by" : "edge_follow", // followers or following? part 2
-      running = true, // is it fetching users?
-      url = `https://www.instagram.com/graphql/query/?query_hash=${hash}&variables={"id":"${userId}","include_reel":true,"fetch_mutual":${mutual},"first":${batchCount}}`; // set up the url
+    let typeOfFollower = (type === "follower") ? 1 : ((type === "following") ? 0 : undefined); // convert first one to true/false for convenience
+    if (typeOfFollower === undefined) throw "first argument must be \"follower\" or \"following\"."; // catch typos
+
+    const batchCount = 12; // fetch 12 in 1 request, same as the web interface
+    const hash = typeOfFollower ? "c76146de99bb02f6415203be841dd25a" : "d04b0a864b4b54837c0d870b0e77e076"; // hash, apparently these two are constant values, but instagram might change them
+    const mutual = typeOfFollower ? "true" : "false"; // followers or following?
+    const variable = typeOfFollower ? "edge_followed_by" : "edge_follow"; // followers or following? part 2
+
+    let url = `https://www.instagram.com/graphql/query/?query_hash=${hash}&variables={"id":"${userId}","include_reel":true,"fetch_mutual":${mutual},"first":${batchCount}}`; // set up the url
+    let userFollowers = []; // set up list of followers
+    let running = true; // is it fetching users?
+
     while (running) { // if there's users left to fetch
       const followersResponse = await fetch(url) // ping url
         .then(res => res.json()) // parse json body
@@ -155,25 +158,24 @@ const getList = async (follower, nolog, callback) => {
             };
           }
         });
+
       await random_wait_time(); // wait
+
       userFollowers = [...userFollowers, ...followersResponse.edges]; // append the newly-acquired list to the old list
+
       if (followersResponse.endCursor === null) running = false; // if no more users, stop fetching them
+
       url = `https://www.instagram.com/graphql/query/?query_hash=${hash}&variables={"id":"${userId}","include_reel":true,"fetch_mutual":${mutual},"first":${batchCount},"after":"${followersResponse.endCursor}"}`; // remake url
     }
     if (!nolog) {
-      console.log(`========= ${follower.toUpperCase()} =========\n` + userFollowers.join("\n"));
+      console.log(`========= ${type.toUpperCase()} =========\n` + userFollowers.join("\n"));
     }
 
     return await setCookies("insta-diff-export-running", "false", async (cookie) => {
       if (!cookie) {
-        alert(`Job cannot be executed!`);
-
-        if (callback && typeof callback === "function") {
-          callback([]);
-        }
-
-        return [];
+        alert(`Job cannot be finished!`);
       }
+
       // show
       if (callback && typeof callback === "function") {
         callback(userFollowers);
@@ -186,7 +188,7 @@ const getList = async (follower, nolog, callback) => {
 
 const findDiff = async () => {
   await getList("follower", true, async (a) => {
-    await getList("following", true, (b) => {
+    await getList("following", true, async (b) => {
       const c = b.filter(u => a.indexOf(u) === -1); // for each followings, if not follower, then push to list
 
       console.log(`========= Following, not followed =========\n` + c.join("\n")) // show
